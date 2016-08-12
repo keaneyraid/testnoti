@@ -1,5 +1,5 @@
 //Service worker file name
-var serviceWorkerFile = './service-worker.js',
+var serviceWorkerFile = 'service-worker.js',
 	logging = true,
 	application_id = "577a17784a9efa9e998b4568",
 	pushbots_url = "https://api.pushbots.com/";
