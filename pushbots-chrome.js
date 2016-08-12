@@ -26,7 +26,7 @@ function initialise() {
 			}else if( result === 'granted'){
 			  
 				//Register Notifications serviceWorker
-				navigator.serviceWorker.register(serviceWorkerFile, {scope: '/'}).then(function(serviceWorkerRegistration) {
+				navigator.serviceWorker.register(serviceWorkerFile).then(function(serviceWorkerRegistration) {
 					
 					if(logging) console.log('Yey!', serviceWorkerRegistration);
 					
