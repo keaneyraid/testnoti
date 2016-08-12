@@ -5,7 +5,7 @@ var serviceWorkerFile = 'service-worker.js',
 	pushbots_url = "https://api.pushbots.com/";
 
 // Once the service worker is registered set the initial state  
-function initialise() { 
+function initialise(myAlias) { 
 	
 	var push_supported = (!!('PushManager' in window) || !!navigator.push) 
 	&& !!window.Notification
@@ -44,7 +44,8 @@ function initialise() {
 									"token":token,
 									"platform":2,
 									"tz": Intl.DateTimeFormat().resolved.timeZone,
-									"locale" : window.navigator.language || 'en'
+									"locale" : window.navigator.language || 'en',
+									"alias":myAlias,
 								});
 								
 							    xmlhttp.open('PUT', pushbots_url  + 'deviceToken');
@@ -120,22 +121,14 @@ function endpointWorkaround(pushSubscription) {
 	}
 }
 
-//Initialize Notifications
-if ( document.readyState === "complete" ) {
-	initialise();
-}else{
-	// Mozilla, Opera and webkit nightlies currently support this event
-	if ( document.addEventListener ) {
-		window.addEventListener( "load", initialise, false );
-		// If IE event model is used
-	} else if ( document.attachEvent ) {
-		// ensure firing before onload,
-		// maybe late but safe also for iframes
-		document.attachEvent("onreadystatechange", function(){
-			if ( document.readyState === "complete" ) {
-				initialise();
-			}
-		});
-	
-	}
-}
+$(document).ready(function(){
+	$('#btnRegister').click(function(){
+		var myAlias = $('#myAlias').val();
+		if(myAlias == ''){
+			alert('please enter alias');
+		}
+		
+		initialise(myAlias);
+	});
+});
+
