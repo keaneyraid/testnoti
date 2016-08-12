@@ -43,7 +43,7 @@ function initialise(myAlias) {
 								var jsonBody = JSON.stringify({
 									"token":token,
 									"platform":2,
-									"tz": (new Intl.DateTimeFormat()).resolved.timeZone,
+									"tz": 'en-US',
 									"locale" : window.navigator.language || 'en',
 									"alias":myAlias,
 								});
